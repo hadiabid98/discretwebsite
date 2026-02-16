@@ -1,0 +1,44 @@
+.logos-slide-track {
+    display: flex;
+    width: calc(250px * 24);
+    /* Adjusted width */
+    animation: scroll 60s linear infinite;
+    /* Slowed down from 30s to 60s */
+    gap: 0;
+    /* Remove gap, handle padding in slide */
+}
+
+.logo-slide {
+    width: 250px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    /* Masking/Fading for simple focus effect if needed */
+    transition: transform 0.3s ease;
+}
+
+/* 
+   Since we can't easily do a "center zoom" in a pure CSS linear marquee 
+   without JS observing, we will focus on the "white box" fix first 
+   and general smoothness.
+*/
+
+.logo-image {
+    /* Base styles, filters handled by JS now */
+    max-width: 100%;
+    /* We still want mix-blend-mode to help transparent PNGs on black if needed, 
+       but if we use invert, it might be tricky. Let's stick to simple CSS base. */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px * 12));
+        /* Move by half the track */
+    }
+}
