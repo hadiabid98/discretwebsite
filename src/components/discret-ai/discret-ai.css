@@ -1,0 +1,142 @@
+/*
+ * Discret AI Page — Tailwind + Custom CSS
+ * This file contains all the custom utility classes used by
+ * the components in src/components/discret-ai/
+ *
+ * These classes come from the original mern_landing_page/src/index.css
+ */
+
+/* ── Color Variables ─────────────────────────────────────── */
+:root {
+  --ai-jet-black: #050505;
+  --ai-jet-black-light: #0D0D0D;
+  --ai-creamy-white: #FDFDF5;
+  --ai-primary: #F68D20;
+  --ai-secondary: #F4145C;
+  --ai-accent: #B10F43;
+  --ai-deep-purple: #1E0034;
+}
+
+/* ── Glass utility ───────────────────────────────────────── */
+.ai-glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-premium {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 8px 32px rgba(246, 141, 32, 0.25);
+  background: linear-gradient(135deg, #F68D20, #F4145C);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-premium:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(246, 141, 32, 0.40);
+}
+
+.btn-premium:active {
+  transform: translateY(2px);
+}
+
+.btn-secondary {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(12px);
+  background: rgba(253, 253, 245, 0.10);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes ai-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: ai-fade-in-up 0.6s ease-out forwards;
+}
+
+/* ── Custom Range Slider ─────────────────────────────────── */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: -16px;
+  left: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+/* Chrome/Safari Thumb */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  /* We use a visual thumb below */
+  border: none;
+  cursor: pointer;
+}
+
+/* Firefox Thumb */
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Track styles for browser consistency */
+.range-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+}
+
+.range-slider::-moz-range-track {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+}

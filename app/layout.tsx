@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/discret-logo-colored.png?v=2',
   }
 };
 

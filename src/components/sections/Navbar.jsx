@@ -6,10 +6,11 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { mainNavLinks, aboutNavLinks } from '@/src/data/navigation';
+import { mainNavLinks, aboutNavLinks, discretAiNavLinks } from '@/src/data/navigation';
 const Navbar = () => {
     const pathname = usePathname();
     const isAboutPage = pathname === '/about';
+    const isDiscretAiPage = pathname === '/discret-ai';
     const [isOpen, setIsOpen] = React.useState(false);
 
     const navLinkStyles = {
@@ -37,7 +38,7 @@ const Navbar = () => {
         open: { opacity: 1, y: 0, pointerEvents: 'auto' }
     };
 
-    const navLinks = isAboutPage ? aboutNavLinks : mainNavLinks;
+    const navLinks = isAboutPage ? aboutNavLinks : isDiscretAiPage ? discretAiNavLinks : mainNavLinks;
 
     return (
         <nav style={{

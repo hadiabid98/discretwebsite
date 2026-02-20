@@ -1,16 +1,22 @@
+'use client';
+
 import React from 'react';
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+    const pathname = usePathname();
+    const isDiscretAi = pathname === '/discret-ai';
+
     return (
         <footer style={{ background: '#020202', color: 'white', paddingTop: '80px', borderTop: '1px solid #111' }}>
             <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '40px', marginBottom: '80px' }} className="footer-grid">
 
-                    {/* Column 1: Branding (3 cols) */}
-                    <div style={{ gridColumn: 'span 12' }} className="col-lg-3">
+                    {/* Column 1: Branding */}
+                    <div style={{ gridColumn: 'span 12' }} className={isDiscretAi ? 'col-lg-4' : 'col-lg-3'}>
                         <div style={{ marginBottom: '24px' }}>
                             <Image src="/discret-logo-colored.png" alt="Discret Digital Logo" width={150} height={50} style={{ height: '50px', width: 'auto', marginBottom: '16px' }} />
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Discret Digital LTD</h3>
@@ -28,8 +34,8 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 2: Quick Links (2 cols) */}
-                    <div style={{ gridColumn: 'span 12' }} className="col-lg-2">
+                    {/* Column 2: Quick Links */}
+                    <div style={{ gridColumn: 'span 12' }} className={isDiscretAi ? 'col-lg-4' : 'col-lg-2'}>
                         <div style={{ marginBottom: '40px' }}>
                             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '20px' }}>Quick Links</h4>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -39,8 +45,8 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 3: Get in Touch (3 cols) - Moved here to be LEFT of form */}
-                    <div style={{ gridColumn: 'span 12' }} className="col-lg-3">
+                    {/* Column 3: Get in Touch */}
+                    <div style={{ gridColumn: 'span 12' }} className={isDiscretAi ? 'col-lg-4' : 'col-lg-3'}>
                         <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '20px' }}>Get in touch</h4>
                             <div style={{ color: '#ccc', lineHeight: 1.6 }}>
@@ -58,29 +64,30 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 4: Contact Form (4 cols) */}
-                    <div style={{ gridColumn: 'span 12' }} className="col-lg-4">
-
-                        {/* Embedded Contact Form */}
-                        <div id="contact-form" style={{ background: '#111', padding: '24px', borderRadius: '16px', border: '1px solid #222' }}>
-                            <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '20px' }}>Get Started</h4>
-                            <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                <div>
-                                    <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Name</label>
-                                    <input type="text" placeholder="John Doe" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white' }} />
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Email</label>
-                                    <input type="email" placeholder="john@example.com" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white' }} />
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Message</label>
-                                    <textarea placeholder="Tell us about your project..." rows="3" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white', resize: 'vertical' }}></textarea>
-                                </div>
-                                <button type="submit" className="btn-primary" style={{ width: '100%', padding: '14px', borderRadius: '8px', fontWeight: 700, marginTop: '8px' }}>Send Message</button>
-                            </form>
+                    {/* Column 4: Contact Form - Hidden on Discret AI page */}
+                    {!isDiscretAi && (
+                        <div style={{ gridColumn: 'span 12' }} className="col-lg-4">
+                            {/* Embedded Contact Form */}
+                            <div id="contact-form" style={{ background: '#111', padding: '24px', borderRadius: '16px', border: '1px solid #222' }}>
+                                <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '20px' }}>Get Started</h4>
+                                <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Name</label>
+                                        <input type="text" placeholder="John Doe" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white' }} />
+                                    </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Email</label>
+                                        <input type="email" placeholder="john@example.com" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white' }} />
+                                    </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '8px' }}>Message</label>
+                                        <textarea placeholder="Tell us about your project..." rows="3" style={{ width: '100%', padding: '12px', background: '#050505', border: '1px solid #333', borderRadius: '8px', color: 'white', resize: 'vertical' }}></textarea>
+                                    </div>
+                                    <button type="submit" className="btn-primary" style={{ width: '100%', padding: '14px', borderRadius: '8px', fontWeight: 700, marginTop: '8px' }}>Send Message</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                 </div>
 
