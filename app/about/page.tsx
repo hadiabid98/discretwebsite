@@ -40,6 +40,7 @@ export default function About() {
     });
 
     const [index, setIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest: number) => {
         // Determine index based on scroll position - More proactive thresholds
@@ -161,16 +162,22 @@ export default function About() {
 
                 {/* Right Side: Sticky Frame */}
                 <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <div className="about-image-container" style={{
-                        position: 'relative',
-                        aspectRatio: '4/5',
-                        borderRadius: '56px',
-                        overflow: 'hidden',
-                        backgroundColor: '#000',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        boxShadow: '0 40px 100px rgba(0,0,0,0.5)',
-                        width: '100%'
-                    }}>
+                    <motion.div
+                        className="about-image-container"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        style={{
+                            position: 'relative',
+                            aspectRatio: '4/5',
+                            borderRadius: '56px',
+                            overflow: 'hidden',
+                            backgroundColor: '#000',
+                            border: '1px solid rgba(255,255,255,0.08)',
+                            boxShadow: '0 40px 100px rgba(0,0,0,0.5)',
+                            width: '100%',
+                            cursor: 'pointer'
+                        }}
+                    >
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={index}
@@ -194,16 +201,16 @@ export default function About() {
                                     alt={SECTIONS[index].title}
                                     fill
                                     style={{
-                                        objectFit: index === 1 ? 'contain' : 'cover',
-                                        backgroundColor: index === 1 ? '#000' : 'transparent',
-                                        filter: 'grayscale(0.5) brightness(0.8)',
-                                        transition: 'filter 0.5s ease-out'
+                                        objectFit: 'contain', // Changed to contain for "normal" non-zoomed view
+                                        backgroundColor: '#000',
+                                        filter: isHovered ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.8)',
+                                        transition: 'filter 0.5s ease-in-out'
                                     }}
                                 />
                             </motion.div>
                         </AnimatePresence>
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent 30%)', pointerEvents: 'none' }} />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

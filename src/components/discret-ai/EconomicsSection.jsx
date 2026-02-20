@@ -83,74 +83,40 @@ function AnimatedNumber({ value }) {
    ────────────────────────────────────────────────── */
 function Slider({ label, icon: Icon, value, min, max, step, onChange, displayValue, accent = "#F68D20" }) {
     const pct = ((value - min) / (max - min)) * 100;
+
     return (
-        <div style={{ marginBottom: "28px" }}>
-            <div style={{
-                display: "flex", justifyContent: "space-between",
-                alignItems: "center", marginBottom: "12px",
-                flexWrap: "wrap", gap: "8px"
-            }}>
+        <div style={{ marginBottom: "28px", position: "relative" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <div style={{
-                        width: "32px", height: "32px", borderRadius: "8px",
-                        background: `${accent}20`,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        color: accent, flexShrink: 0
-                    }}>
+                    <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: `${accent}20`, display: "flex", alignItems: "center", justifyContent: "center", color: accent }}>
                         <Icon size={16} />
                     </div>
-                    <span style={{
-                        fontSize: "0.85rem", fontWeight: 600,
-                        color: "rgba(255,255,255,0.7)"
-                    }}>{label}</span>
+                    <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>{label}</span>
                 </div>
-                <motion.span
-                    key={displayValue}
-                    initial={{ scale: 0.85, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    style={{
-                        fontWeight: 800, fontSize: "1rem",
-                        color: accent, minWidth: "80px", textAlign: "right"
-                    }}
-                >
-                    {displayValue}
-                </motion.span>
+                <span style={{ fontWeight: 800, color: accent }}>{displayValue}</span>
             </div>
 
-            {/* Slider Interface */}
-            <div style={{ position: "relative", height: "12px", display: "flex", alignItems: "center", marginBottom: "8px" }}>
-                {/* Visual Track (Non-interactive, click goes through to input) */}
-                <div style={{
-                    width: "100%", height: "8px",
-                    background: "rgba(255,255,255,0.08)",
-                    borderRadius: "100px", position: "relative",
-                    pointerEvents: "none"
-                }}>
-                    {/* Filled Track */}
-                    <div style={{
-                        width: `${pct}%`, height: "100%",
-                        background: `linear-gradient(90deg, ${accent}80, ${accent})`,
-                        borderRadius: "100px",
-                        boxShadow: `0 0 12px ${accent}60`,
-                        pointerEvents: "none"
-                    }} />
-
+            <div style={{ position: "relative", height: "32px", display: "flex", alignItems: "center" }}>
+                {/* Background Track - Behind the input */}
+                <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.08)", borderRadius: "100px", position: "relative", pointerEvents: "none" }}>
+                    {/* Progress Bar */}
+                    <div style={{ width: `${pct}%`, height: "100%", background: accent, borderRadius: "100px" }} />
                     {/* Visual Thumb */}
                     <div style={{
                         position: "absolute",
                         left: `calc(${pct}% - 10px)`,
-                        top: "-6px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
                         width: "20px", height: "20px",
                         borderRadius: "50%",
-                        background: accent,
-                        border: "3px solid #050505",
-                        boxShadow: `0 0 16px ${accent}80`,
-                        zIndex: 5,
-                        pointerEvents: "none"
+                        background: "white",
+                        border: `4px solid ${accent}`,
+                        boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
+                        zIndex: 2
                     }} />
                 </div>
 
-                {/* Actual Range Input (The only interactive element) */}
+                {/* Real Interaction Layer - On top of everything */}
                 <input
                     type="range"
                     min={min}
@@ -158,12 +124,22 @@ function Slider({ label, icon: Icon, value, min, max, step, onChange, displayVal
                     step={step}
                     value={value}
                     onChange={(e) => {
-                        const val = parseInt(e.target.value, 10);
-                        if (!isNaN(val)) {
-                            onChange(val);
-                        }
+                        const val = parseInt(e.target.value);
+                        if (!isNaN(val)) onChange(val);
                     }}
-                    className="range-slider"
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        cursor: "pointer",
+                        opacity: 0,
+                        zIndex: 20,
+                        margin: 0,
+                        WebkitAppearance: "none",
+                        appearance: "none"
+                    }}
                 />
             </div>
 
@@ -172,7 +148,7 @@ function Slider({ label, icon: Icon, value, min, max, step, onChange, displayVal
                 display: "flex", justifyContent: "space-between",
                 fontSize: "0.7rem", color: "rgba(255,255,255,0.3)",
                 fontWeight: 600,
-                pointerEvents: "none"
+                marginTop: "6px"
             }}>
                 <span>{fmt(min)}</span>
                 <span>{max >= 20000 ? "20,000+" : fmt(max)}</span>

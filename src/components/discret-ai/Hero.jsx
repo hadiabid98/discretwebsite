@@ -7,7 +7,7 @@ const Hero = () => {
     const y2 = useTransform(scrollY, [0, 500], [0, -100]);
 
     return (
-        <section className="relative min-h-[85vh] flex items-center pt-32 pb-12 overflow-hidden px-6">
+        <section className="relative min-h-[70vh] flex items-start pt-20 pb-8 overflow-hidden px-6">
             {/* Background Parallax Elements */}
             <motion.div
                 style={{ y: y1 }}
@@ -31,22 +31,22 @@ const Hero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
                         viewport={{ once: false }}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-primary uppercase tracking-widest mb-4"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-primary uppercase tracking-widest mb-3"
                     >
                         <Bot size={14} />
 
                         Communication & Revenue Focused
                     </motion.div>
 
-                    <h1 className="text-4xl md:text-6xl font-bold text-creamy-white leading-[1.1] mb-5 tracking-tight">
+                    <h1 className="text-4xl md:text-6xl font-bold text-creamy-white leading-[1.1] mb-3 tracking-tight">
                         Hire the First AI Sales Employee That Speaks <span className="text-primary italic">"Pakistani."</span>
                     </h1>
 
-                    <p className="text-base md:text-lg text-white/50 mb-8 max-w-lg leading-relaxed">
+                    <p className="text-base md:text-lg text-white/50 mb-4 max-w-lg leading-relaxed">
                         Stop losing customers to language barriers and missed calls. Our AI Agents handle inquiries, book appointments, and close leads 24/7.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
                         <button
                             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                             className="w-full sm:w-auto btn-premium !py-3 !px-6 text-sm cursor-pointer"
